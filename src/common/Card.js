@@ -91,24 +91,22 @@ class Card {
   }
 
   renderGradient() {
-    if (typeof this.colors.bgColor !== "object") return;
+    if (!Array.isArray(this.colors.bgColor)) return;
 
     const gradients = this.colors.bgColor.slice(1);
-    return typeof this.colors.bgColor === "object"
-      ? `
-        <defs>
-          <linearGradient
-            id="gradient" 
-            gradientTransform="rotate(${this.colors.bgColor[0]})"
-          >
-            ${gradients.map((grad, index) => {
-              let offset = (index * 100) / (gradients.length - 1);
-              return `<stop offset="${offset}%" stop-color="#${grad}" />`;
-            })}
-          </linearGradient>
-        </defs>
-        `
-      : "";
+    return `
+      <defs>
+        <linearGradient
+          id="gradient"
+          gradientTransform="rotate(${this.colors.bgColor[0]})"
+        >
+          ${gradients.map((grad, index) => {
+            let offset = (index * 100) / (gradients.length - 1);
+            return `<stop offset="${offset}%" stop-color="${grad}" />`;
+          })}
+        </linearGradient>
+      </defs>
+    `;
   }
 
   render(body) {
@@ -147,7 +145,7 @@ class Card {
           stroke="#E4E2E2"
           width="${this.width - 1}"
           fill="${
-            typeof this.colors.bgColor === "object"
+            Array.isArray(this.colors.bgColor)
               ? "url(#gradient)"
               : this.colors.bgColor
           }"

@@ -60,22 +60,40 @@ function clampValue(number, min, max) {
   return Math.max(min, Math.min(number, max));
 }
 
-function isValidGradient(colors) {
-  return isValidHexColor(colors[1]) && isValidHexColor(colors[2]);
+function normalizeColor(color) {
+  if (isValidHexColor(color)) {
+    return `#${color}`;
+  }
+  if (color === 'transparent') {
+    return color;
+  }
+  return null;
+}
+
+function normalizeGradient(colors) {
+  if (Array.isArray(colors) && colors.length > 1) {
+    const gradient = [];
+    for (const [i, c] of colors.entries()) {
+      if (i === 0) { // angle
+        gradient.push(c);
+        continue;
+      }
+      const color = normalizeColor(c);
+      if (!color) {
+        return null
+      }
+      gradient.push(color);
+    }
+    return gradient;
+  }
+  return null
 }
 
 function fallbackColor(color, fallbackColor) {
-  let colors = color.split(",");
-  let gradient = null;
+  const colors = color.split(",");
+  const gradient = normalizeGradient(colors);
 
-  if (colors.length > 1 && isValidGradient(colors)) {
-    gradient = colors;
-  }
-
-  return (
-    (gradient ? gradient : isValidHexColor(color) && `#${color}`) ||
-    fallbackColor
-  );
+  return gradient || normalizeColor(color) || fallbackColor;
 }
 
 function request(data, headers) {
