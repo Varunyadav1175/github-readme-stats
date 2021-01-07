@@ -135,11 +135,11 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
         const output = `
           <rect
-            mask="url(#rect-mask)" 
+            mask="url(#rect-mask)"
             data-testid="lang-progress"
-            x="${progressOffset}" 
+            x="${progressOffset}"
             y="0"
-            width="${progress}" 
+            width="${progress}"
             height="8"
             fill="${lang.color || "#858585"}"
           />
@@ -194,7 +194,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
   card.setHideBorder(hide_border);
   card.setHideTitle(hide_title);
   card.setCSS(`
-    .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
+    .lang-name { font: bold 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
   `);
 
   return card.render(`
