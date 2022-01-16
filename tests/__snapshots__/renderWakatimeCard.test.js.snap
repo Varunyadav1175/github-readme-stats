@@ -22,7 +22,7 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
           
     
     .stat {
-      font: 600 14px 'Segoe UI', Ubuntu, \\"Helvetica Neue\\", Sans-Serif; fill: #333;
+      font: 600 13px 'Segoe UI', Ubuntu, \\"Helvetica Neue\\", Sans-Serif; fill: #333;
     }
     @supports(-moz-appearance: auto) {
       /* Selector detects Firefox */
@@ -179,7 +179,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
           
     
     .stat {
-      font: 600 14px 'Segoe UI', Ubuntu, \\"Helvetica Neue\\", Sans-Serif; fill: #333;
+      font: 600 13px 'Segoe UI', Ubuntu, \\"Helvetica Neue\\", Sans-Serif; fill: #333;
     }
     @supports(-moz-appearance: auto) {
       /* Selector detects Firefox */
